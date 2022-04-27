@@ -43,8 +43,14 @@ html, body {
 }
 
 body {
-  text-rendering: optimizelegibility;
-  font-size: 1.4rem;
+  grid-template: "pl banner pr" max-content
+                 "pl navbar pr" max-content
+                 "pl content pr" max-content
+                 "pl footer pr" max-content
+                 / 1fr 100ch 1fr;
+  margin: 1ex;
+  padding: 0;
+  display: grid;
 }
 
 body, ul, ol, dl {
