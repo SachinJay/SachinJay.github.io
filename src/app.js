@@ -11,7 +11,7 @@ import * as tf from '@tensorflow/tfjs';
 //TODO unsure of how to host the mdoel or get it working with google buckets
 // const LOCAL_URL = "http://localhost:1234/model/model.json"
 
-console.log('Hello world!');
+console.log('Hello, world!');
 
 var model = undefined;
 
@@ -27,20 +27,41 @@ loadTheModel();
 
 
 
+// CODE TO READ IN THE IMAGE
+// TODO: how to convert image to tensor? How to normalize image to be run
+// run in the model? 
 
-const image_input = document.querySelector("#image-input");
+function read_in_image(){
+    const image_input = document.querySelector("#image-input");
 
-if (image_input){
-    image_input.addEventListener("change", function() {
-        const reader = new FileReader();
-        reader.addEventListener("load", () => {
-            const uploaded_image = reader.result;
-            document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
-        });
-        reader.readAsDataURL(this.files[0]);
-        });
+    // console.log("The image input is: ");
+    // console.log(image_input);
 
+    if (image_input){
+        image_input.addEventListener("change", function() {
+            const reader = new FileReader();
+            reader.addEventListener("load", () => {
+                const uploaded_image = reader.result;
+                document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+            });
+            reader.readAsDataURL(this.files[0]);
+            });
+    }
 }
+
+read_in_image();
+
+console.log("this oughtta print");
+
+
+function display_prediction(pred){
+    const pred_output = document.querySelector('#prediction-output');
+
+    pred_output.innerHTML = pred;
+}
+
+display_prediction('Positive Example');
+
 
 
 
