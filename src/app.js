@@ -7,6 +7,7 @@ import * as tf from '@tensorflow/tfjs';
 //  const HOSTED_MODEL_URL =
 //  'https://storage.googleapis.com/compression-models/models/test-resnet20/model.json';
 
+
 //TODO unsure of how to host the mdoel or get it working with google buckets
 // const LOCAL_URL = "http://localhost:1234/model/model.json"
 
@@ -16,6 +17,7 @@ var model = undefined;
 
 async function loadTheModel() {
     model = await tf.loadLayersModel(HOSTED_MODEL_URL);
+    // model = await tf.loadLayersModel('./model.json');
     // model = await tf.loadLayersModel(LOCAL_URL);
     console.log(model);
 }

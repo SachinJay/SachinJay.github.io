@@ -5,17 +5,27 @@
   "main": "index.js",
   "source": "src/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel ./src/index.html",
+    "prebuild-dev": "shx rm -rf dist/*",
+    "build-dev": "parcel build ./src/index.html --no-minify --public-url ./",
+    "prebuild": "shx rm -rf dist/*",
+    "build": "parcel build ./src/index.html --public-url ./",
+    "push-gh-pages": "push-dir --dir=dist --branch=gh-pages --cleanup --verbose",
+    "deploy" : "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "homepage": "https://SachinJay.github.io",
   "devDependencies": {
     "buffer": "^6.0.3",
     "parcel": "^2.5.0",
-    "process": "^0.11.10"
+    "process": "^0.11.10", 
+    "shx": "^0.3.2"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "^3.16.0"
-  }
+    "@tensorflow/tfjs": "^3.16.0", 
+    "gh-pages" : "latest"
+  } 
 }
