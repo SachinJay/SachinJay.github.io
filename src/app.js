@@ -14,7 +14,9 @@ loadTheModel().then(x => {
     console.log(model);
 });
 
-display_prediction('Positive Example');
+var prediction = "Positive example";
+
+display_prediction(prediction);
 
 
 
