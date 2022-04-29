@@ -23,15 +23,6 @@
   font-kerning: auto;
 }
 
-/* body {
-  margin : 10;
-}
-
-h1 {
-    color: hotpink;
-    font-family: cursive;
-  } */
-
   #display-image{
     width: 400px;
     height: 225px;
@@ -81,7 +72,7 @@ h1 {
     /* ensures that older browsers will display HTML5 elements correctly */
     
   h1 {
-    font-size: 1.4rem;
+    font-size: 2rem;
   }
     /* begins to set up font sizes relative to base rem – h1 has been used as an example */
     
@@ -166,7 +157,7 @@ h1 {
 
 .title {
   text-align: center;
-  font-size: larger;
+  font-size: 1.4rem;
   color: rgb(21, 154, 159);
 }
 
