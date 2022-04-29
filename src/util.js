@@ -49,7 +49,7 @@ export function read_in_image(){
                 const uploaded_image = reader.result;
 
                 // Display image in the display-image div
-                document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+                // document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
                 
                 // Display image in the #img img tag
                 document.querySelector('#img').src = uploaded_image;
