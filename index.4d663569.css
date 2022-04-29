@@ -62,7 +62,7 @@ article, aside, audio, footer, header, nav, section, video {
 }
 
 h1 {
-  font-size: 1.4rem;
+  font-size: 2rem;
 }
 
 p {
@@ -141,7 +141,7 @@ div {
 .title {
   text-align: center;
   color: #159a9f;
-  font-size: larger;
+  font-size: 1.4rem;
 }
 
 .upload-button {
