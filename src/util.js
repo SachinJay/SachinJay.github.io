@@ -42,19 +42,52 @@ export async function loadTheModel() {
 export function read_in_image(){
     const image_input = document.querySelector("#image-input");
 
-    // console.log("The image input is: ");
-    // console.log(image_input);
-
     if (image_input){
         image_input.addEventListener("change", function() {
             const reader = new FileReader();
             reader.addEventListener("load", () => {
                 const uploaded_image = reader.result;
+
+                // Display image in the display-image div
                 document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
+                
+                // Display image in the #img img tag
+                document.querySelector('#img').src = uploaded_image;
+                
+                
+                var myImage = new Image();
+                myImage.src = uploaded_image;
+
+                myImage.onload = function() {
+
+                    var t = get_img_tensor(myImage);
+                    console.log('The tensor is: ');
+                    t.print(true);
+
+                    // TODO: add inference/preprocessing logic here
+                }
             });
             reader.readAsDataURL(this.files[0]);
             });
     }
+}
+
+/**
+ * Takes in an image and returns the tensor of that image
+ * @param {HTMLImageElement} myImage 
+ * @returns tensor of the pixel data in myImage
+ */
+function get_img_tensor(myImage){
+
+    myImage.width = myImage.naturalWidth;
+    myImage.height = myImage.naturalHeight;
+
+    console.log(`Height is ${myImage.height}`);
+    console.log(`Width is ${myImage.width}`);
+
+    var t = tf.browser.fromPixels(myImage);
+
+    return t;
 }
 
 
