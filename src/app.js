@@ -1,8 +1,11 @@
 import { loadTheModel,display_prediction,read_in_image} from './util';
-
 read_in_image();
 
 console.log('Hello, world!');
+
+
+
+
 
 // EVERYTHING YOU WANNA DO WITH THE MODEL NEEDS TO BE AFTER PROMISE IS RESOLVED
 // I.E. You must run prediction in here

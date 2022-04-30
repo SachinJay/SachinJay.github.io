@@ -2,18 +2,12 @@
  * File with all the functions we need to call
  */
  import * as tf from '@tensorflow/tfjs';
+ import {L2} from './classes';
 
 
- // Hosted, pre-trained generator model.
+ // Hosted, pre-trained model.
  const HOSTED_MODEL_URL =
- 'https://storage.googleapis.com/tfjs-examples/mnist-acgan/dist/generator/model.json';
-
-//  const HOSTED_MODEL_URL =
-//  'https://storage.googleapis.com/compression-models/models/test-resnet20/model.json';
-
-
-//TODO unsure of how to host the mdoel or get it working with google buckets
-// const LOCAL_URL = "http://localhost:1234/model/model.json"
+ 'https://storage.googleapis.com/compression-models/models/test-resnet20/model.json';
 
 
 /**
@@ -24,11 +18,20 @@
  * @returns the pre-trained model
  */
 export async function loadTheModel() {
+    tf.serialization.registerClass(L2);
     var model = await tf.loadLayersModel(HOSTED_MODEL_URL);
     // model = await tf.loadLayersModel('./model.json');
     // model = await tf.loadLayersModel(LOCAL_URL);
     console.log("Logging the model from the utils file");
     console.log(model);
+
+    const a = tf.zeros([2,32,32,3]);
+    // const b = tf.tensor([a]);
+    // b.print(true);
+    const p = model.predict(a);
+    const pred_data = p.dataSync();
+    console.log(`Prediction: ${p}`);
+    console.log(`Predicted labels: ${p.argMax(1)}`)
 
     return await model;
 }
