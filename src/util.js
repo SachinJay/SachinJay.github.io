@@ -9,6 +9,9 @@
  const HOSTED_MODEL_URL =
  'https://storage.googleapis.com/compression-models/models/test-resnet20/model.json';
 
+//  CIFAR-10 labels, using this for testing
+const cifar10_labels = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'];
+
 
 /**
  * Function to load the model
@@ -20,18 +23,20 @@
 export async function loadTheModel() {
     tf.serialization.registerClass(L2);
     var model = await tf.loadLayersModel(HOSTED_MODEL_URL);
-    // model = await tf.loadLayersModel('./model.json');
-    // model = await tf.loadLayersModel(LOCAL_URL);
     console.log("Logging the model from the utils file");
     console.log(model);
 
+    /**test model on some nonsense tensors */ 
     const a = tf.zeros([2,32,32,3]);
-    // const b = tf.tensor([a]);
-    // b.print(true);
     const p = model.predict(a);
-    const pred_data = p.dataSync();
-    console.log(`Prediction: ${p}`);
-    console.log(`Predicted labels: ${p.argMax(1)}`)
+    const p_argmax = p.argMax(1);
+    const p_array = p_argmax.array();
+
+    p_array.then(preds=> {
+        console.log('Promise is resolved:');
+        console.log(`The prediction is ${cifar10_labels[preds[0]]}`);
+    });
+    /** End the test on non-sense tensors */
 
     return await model;
 }
@@ -64,15 +69,49 @@ export function read_in_image(){
                 myImage.onload = function() {
 
                     var t = get_img_tensor(myImage);
-                    console.log('The tensor is: ');
-                    t.print(true);
+                    // console.log('The tensor is: ');
+                    // t.print(true);
+
+                    t.array().then(arr =>{
+                        const a = preprocess_img(arr)
+                        console.log('The wrapped tensor is: ');
+                        a.print(true);
+
+                        loadTheModel().then(model=>{
+                            const p = model.predict(a);
+                            const p_argmax = p.argMax(1);
+                            const p_array = p_argmax.array();
+
+                            p_array.then(preds=> {
+                                display_prediction(cifar10_labels[preds[0]])
+                            });
+                        });
+                    });
 
                     // TODO: add inference/preprocessing logic here
+
+
                 }
             });
             reader.readAsDataURL(this.files[0]);
             });
     }
+}
+
+/**
+ * Function to do all the preprocessing of the image in order to ensure 
+ * that model.predict() works as expected
+ * 
+ * @param {number[]} img_arr image tensor in array form
+ * @returns the preprocessed tensor
+ */
+function preprocess_img(img_arr){
+
+    // wrap the array and convert to tensor
+    // Do this because the predict function expects array of many exmaples
+    const a = tf.tensor([img_arr]);
+
+    return a;
 }
 
 /**
@@ -88,7 +127,7 @@ function get_img_tensor(myImage){
     console.log(`Height is ${myImage.height}`);
     console.log(`Width is ${myImage.width}`);
 
-    var t = tf.browser.fromPixels(myImage);
+    var t = tf.browser.fromPixels(myImage,3);
 
     return t;
 }
