@@ -118,14 +118,28 @@ function predict_image(image){
         loadTheModel().then(model=>{
 
             // Run the prediction
-            const p = model.predict(a);  //Soft max probability vector
+            const p = model.predict(a);  //Soft max probability array
             const p_argmax = p.argMax(1);//Tensor of indices of highest probability labels
             const p_array = p_argmax.array();//Convert tensor to array for indexing
 
             p_array.then(preds=> {
                 // Once tensor is converted to array, use labels array
                 // To properly name the prediction 
-                display_prediction(cifar10_labels[preds[0]])
+
+                const pred_index = preds[0];
+                const predicted_label = cifar10_labels[pred_index];
+                display_prediction(predicted_label);
+
+                p.array().then(probs=>{
+
+                    var confidence = probs[0][pred_index];
+                    confidence *= 100;
+                    const label_conf = `${predicted_label} with confidence ${confidence.toFixed(2)}%`;
+                    display_prediction(label_conf);
+
+                });
+
+
             });
         });
     });
