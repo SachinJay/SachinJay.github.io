@@ -132,6 +132,7 @@ div {
 }
 
 .lec {
+  text-align: center;
   background-color: #f0f0ff;
   border:  solid #000;
   margin-bottom: 4ex;
