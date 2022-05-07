@@ -177,4 +177,14 @@ input[type="file"] {
   right: 100%;
 }
 
+footer {
+  width: 100%;
+  color: #00f;
+  text-align: center;
+  background-color: #d5dbe1;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 /*# sourceMappingURL=index.4d663569.css.map */
