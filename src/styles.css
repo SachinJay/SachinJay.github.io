@@ -193,3 +193,13 @@ input[type="file"] {
   right: 100%;
   bottom: 100%;
 }
+
+footer {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	background-color: rgb(213, 219, 225);
+  Color: rgb(0, 0, 255);
+	text-align: center;
+}
