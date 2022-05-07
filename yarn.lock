@@ -712,6 +712,11 @@
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-layers/-/tfjs-layers-3.16.0.tgz#d894c619bf7bd7b2a014d352b4b32d92885649bc"
   integrity sha512-66CjI7zEpcM20+v/Oo+aOp/vDuW2jYVimbr5w1xukNCg9zhMb6jdRMMe05TCC4jVzLnIhAp0rf4zQSe66zrFHQ==
 
+"@tensorflow/tfjs-tflite@^0.0.1-alpha.8":
+  version "0.0.1-alpha.8"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-tflite/-/tfjs-tflite-0.0.1-alpha.8.tgz#9fb5907097e090119202c99cf5fc396789bc25d7"
+  integrity sha512-tRVQlZNYriZLQ/+05E7b4CMk478U8lgCVPn5hT95PXd8SEUIKGjEB85Vts+S38H1YrQsOEhV3ngJPDy3gtQhsg==
+
 "@tensorflow/tfjs@^3.16.0":
   version "3.16.0"
   resolved "https://registry.yarnpkg.com/@tensorflow/tfjs/-/tfjs-3.16.0.tgz#dbe3f7e086ce901f61d1c32aa64094a14b4aa342"

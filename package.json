@@ -12,7 +12,7 @@
     "prebuild": "shx rm -rf dist/*",
     "build": "parcel build ./src/index.html --public-url ./",
     "push-gh-pages": "push-dir --dir=dist --branch=gh-pages --cleanup --verbose",
-    "deploy" : "gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "",
@@ -21,11 +21,12 @@
   "devDependencies": {
     "buffer": "^6.0.3",
     "parcel": "^2.5.0",
-    "process": "^0.11.10", 
+    "process": "^0.11.10",
     "shx": "^0.3.2"
   },
   "dependencies": {
-    "@tensorflow/tfjs": "^3.16.0", 
-    "gh-pages" : "latest"
-  } 
+    "@tensorflow/tfjs": "^3.16.0",
+    "@tensorflow/tfjs-tflite": "^0.0.1-alpha.8",
+    "gh-pages": "latest"
+  }
 }
